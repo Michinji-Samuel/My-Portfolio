@@ -614,3 +614,48 @@ footer .social-links a:hover {
   opacity: 0.8;
   transform: scale(1.1);
 }
+
+
+#pitch {
+  background-color: #f9fafb;
+  text-align: center;
+   padding: 4rem 1.5rem;
+}
+html.dark #pitch {
+  background-color: #1f2937;
+}
+
+#pitch h2 {
+  margin-bottom: 1rem; 
+}
+
+#pitch p {
+    max-width: 600px;
+    margin: 0 auto 2rem auto; 
+    color: #4b5563; 
+}
+html.dark #pitch p {
+    color: #9ca3af;
+}
+
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; 
+  height: 0;
+  overflow: hidden;
+  max-width: 800px; 
+  margin: 0 auto; 
+  background-color: #000; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0; 
+}
