@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samuel Wahome - Portfolio</title> <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script>
+    // --- Dark Mode Logic ---
+    function applyTheme() {
+      // console.log("Applying theme..."); // Optional: Keep logs for debugging
+      try {
+        const theme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {
+        console.error("Error applying theme:", e);
+      }
+    }
+
+    function toggleDarkMode() {
+      // console.log("Toggle button clicked!"); // Optional: Keep logs for debugging
+      try {
+        const htmlElement = document.documentElement;
+        if (htmlElement.classList.contains('dark')) {
+          htmlElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          htmlElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      } catch (e) {
+        console.error("Error toggling dark mode:", e);
+      }
+    }
+    applyTheme(); // Apply theme immediately
+
+    // --- Event Listener Setup ---
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const toggleButton = document.getElementById('darkModeToggle');
+        if (toggleButton) {
+            toggleButton.addEventListener('click', toggleDarkMode);
+        } else {
+            console.error("Dark mode toggle button not found! Check the button's ID.");
+        }
+    });
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <span class="logo-mask"></span>
+      <h1>Samuel Wahome</h1>
+    </div>
+    <nav>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#courses">Courses</a>
+      <a href="#contact">Contact</a> </nav>
+    <button id="darkModeToggle">
+      Toggle Dark Mode
+    </button>
+  </header>
+
+  <section id="hero">
+    <div class="hero-content-wrapper">
+
+      <div class="hero-image-container">
+        <img src="profile-picture.jpg" alt="Samuel Wahome Michinji - Profile Picture" class="profile-picture">
+        </div>
+
+      <div class="hero-text-container">
+        <h2>Samuel Wahome Michinji</h2>
+        <p class="tagline">Data Scientist | Industrial Chemist | Process Optimization Enthusiast</p>
+        <p class="intro">
+          Bridging the gap between Industrial Chemistry and Data Science, I specialize in extracting insights, optimizing processes, and driving efficiency through data-driven decision-making. With a strong foundation in chemical analysis and a growing expertise in predictive modeling, I am passionate about leveraging data to solve real-world industrial challenges and enhance operational performance.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="cta-button">View Projects</a>
+          <a href="My_Resume.pdf" download="Samuel_Wahome_Resume.pdf" class="cta-button">Download CV</a>
+          <a href="#contact" class="cta-button">Contact Me</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section id="experience">
+    <h2>Work Experience</h2>
+    <div class="experience-item">
+      <h3>Production Operator</h3>
+      <p class="company-location">Synresins Kenya Ltd – Nairobi, Kenya</p>
+      <p class="dates">February 2020 - Present</p>
+      <ul>
+        <li>Operated and monitored resin production processes, ensuring adherence to safety (OSHA) and quality (ISO) standards.</li>
+        <li>Collaborated with cross-functional teams to analyze workflows and implement optimizations, contributing to a 15% reduction in downtime.</li>
+        <li>Conducted quality control tests on raw materials and finished products, ensuring compliance and documenting results.</li>
+        <li>Applied Kaizen methodologies for continuous improvement, resulting in a 10% increase in production efficiency.</li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="experience-item">
+      <h3>Industrial Chemist (Intern)</h3>
+      <p class="company-location">Ministry of Petroleum and Mining – Geological Surveys Laboratories – Nairobi, Kenya</p>
+      <p class="dates">May 2019 – August 2019</p>
+      <ul>
+        <li>Conducted chemical analysis of mineral samples using AAS, XRF, and UV-Vis Spectrophotometry, supporting national geological surveys.</li>
+        <li>Assisted in the calibration and maintenance of laboratory instruments.</li>
+        <li>Compiled and documented detailed analytical reports for stakeholders.</li>
+      </ul>
+    </div>
+    </section>
+  <section id="about">
+    <div class="content-card">
+      <h2>About Me</h2>
+      <p>
+        I am a data enthusiast with a background in <strong>Industrial and Applied Chemistry</strong> and a strong passion for <strong>data science</strong>. My journey has been fueled by curiosity—starting in the lab, analyzing chemical data, and now exploring insights from large datasets.
+      </p>
+      <p>
+        Most of my time is spent working with data—cleaning, analyzing, and building predictive models. My skills include <strong>data analytics, visualization, machine learning, and predictive modeling</strong>. I have a keen eye for detail and enjoy solving complex problems, whether through structured data preprocessing or deriving actionable insights.
+      </p>
+      <p>
+        Beyond work, I am constantly learning. I have been <strong>self-teaching data science</strong> through platforms like YouTube, Google Data Analytics, and online courses including ALX and MOOCs. My learning process involves building projects, experimenting with real-world datasets, and tackling challenges on platforms like <strong>Kaggle</strong>.
+      </p>
+      <p>
+        When I'm not coding, I enjoy sharing knowledge. I document my learning journey, explore open-source projects, and aim to contribute to the <strong>data science community</strong> through tutorials and mentorship. Check out my projects, experience, and certifications throughout this site. Feel free to explore my GitHub repositories and connect with me on LinkedIn!
+      </p>
+    </div>
+  </section>
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>Technical & Data Science</h3>
+        <ul>
+          <li><strong>Data Analytics: </strong>Python (Pandas, NumPy), SQL, Power BI, Excel</li>
+          <li><strong>Data Visualization: </strong>Power BI, Matplotlib, Seaborn, Plotly</li>
+          <li><strong>Machine Learning: </strong>Scikit-learn, TensorFlow (Regression, Classification, Clustering, Model Optimization)</li>
+          <li><strong>Programming: </strong>Python, SQL</li>
+          <li><strong>Databases: </strong>PostgreSQL, MySQL</li>
+          <li><strong>Tools: </strong>Git, GitHub, Kaggle, Jupyter Notebooks, Google Colab</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Industrial & Process Optimization</h3>
+        <ul>
+          <li><strong>Industrial Chemistry: </strong>Chemical Process Analysis, Raw Material Testing, Product Formulation</li>
+          <li><strong>Process Optimization: </strong>Lean Manufacturing, Six Sigma, Data-Driven Efficiency Improvements</li>
+          <li><strong>Quality Control: </strong>ISO Standards, Statistical Process Control (SPC), Root Cause Analysis</li>
+          <li><strong>Laboratory Analysis & Instrumentation: </strong>AAS, XRF, UV-Vis Spectroscopy, Titrations</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Professional & Soft Skills</h3>
+        <ul>
+          <li><strong>Analytical Problem Solving: </strong>Identifying inefficiencies and applying data-driven solutions</li>
+          <li><strong>Project Coordination: </strong> Managing tasks, meeting deadlines, and optimizing workflows</li>
+          <li>Team Leadership & Collaboration</li>
+          <li><strong>Mentorship & Training: </strong>Knowledge sharing, coaching junior team members</li>
+          <li><strong>Reporting & Documentation: </strong>Technical report writing, data interpretation</li>
+          <li><strong>Industrial Safety: </strong>OSHA Compliance, Risk Assessment, Safety Protocol Implementation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="ai-job-match.png" alt="AI Job Match Platform">
+        <div class="card-content">
+          <h3>AI Job Match Platform</h3>
+          <p>
+            This AI-powered platform connects job seekers with opportunities based on skills, experience, and industry demand. It leverages predictive analytics to recommend personalized career paths and learning resources.
+          </p>
+          <p><strong>Technologies:</strong> </p>
+          <div class="project-links">
+            <a href="https://youtu.be/-LX9t8irIf8" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+            <a href="https://youtu.be/-LX9t8irIf8" target="_blank" rel="noopener noreferrer">Live Demo</a> </div>
+        </div>
+      </div>
+      <div class="project-card">
+         <img src="harambee-coders.png" alt="HarambeeCoders Example Project"> <div class="card-content">
+          <h3>HarambeeCoders (Example Project)</h3> <p>
+            An online platform providing mentorship and learning resources for aspiring developers, featuring an interactive coding environment, community forums, and GitHub integration.
+          </p>
+           <p><strong>Technologies:</strong> </p>
+          <div class="project-links">
+            <a href="#" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">Live Demo</a> </div>
+        </div>
+      </div>
+      </div>
+  </section>
+  <section id="courses">
+    <h2>Courses & Certificates</h2>
+    <ul>
+      <li>
+        <strong>Google Data Analytics Professional Certificate</strong> - Google
+        <span class="status status-completed">(Completed)</span>
+      </li>
+      <li>
+        <strong>ALX Data Science Program</strong> - ALX Africa
+        <span class="status status-in-progress">(In Progress - as of March 2025)</span>
+      </li>
+      <li>
+        <strong>Data Structures and Algorithms</strong> - University of Helsinki / mooc.fi
+        (<a href="https://tira.mooc.fi/spring-2025/" target="_blank" rel="noopener noreferrer">Course Link</a>)
+        <span class="status status-in-progress">(In Progress - Spring 2025)</span>
+      </li>
+      <li>
+        <strong>OSHA Safety Training Certification</strong>
+        <span class="status status-completed">(Completed)</span>
+      </li>
+      <li>
+        <strong>Kaizen Methodology Certification</strong>
+        <span class="status status-completed">(Completed)</span>
+      </li>
+    </ul>
+  </section>
+  <section id="contact">
+    <h2>Get In Touch</h2>
+    <p>
+        I'm always interested in discussing new opportunities, collaborations, or projects related to data science and industrial applications. Feel free to reach out!
+    </p>
+    <div class="contact-links">
+        <a href="mailto:wahomesamuel663@gmail.com" class="cta-button">Email Me</a>
+        <a href="https://www.linkedin.com/in/samuel-wahome-60023b152/" target="_blank" rel="noopener noreferrer" class="cta-button">LinkedIn</a>
+        <a href="https://github.com/Michinji-Samuel" target="_blank" rel="noopener noreferrer" class="cta-button">GitHub</a>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2025 Samuel Wahome Michinji</p> <div class="social-links">
+      <a href="https://www.linkedin.com/in/samuel-wahome-60023b152/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+      </a>
+      <a href="https://github.com/Michinji-Samuel" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+        <i class="fa-brands fa-github" aria-hidden="true"></i>
+      </a>
+      <a href="" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter) Profile">
+        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
