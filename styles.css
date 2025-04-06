@@ -659,3 +659,98 @@ html.dark #pitch p {
   height: 100%;
   border: 0; 
 }
+
+
+/* --- Mobile Navigation Toggle Button --- */
+.mobile-nav-toggle {
+  display: none; /* Hidden by default on desktop */
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  margin-left: 1rem; /* Add space next to dark mode toggle if needed */
+  color: #ffffff; /* White icon to match header text */
+  font-size: 1.75rem; /* Make icon larger */
+  cursor: pointer;
+  z-index: 100; /* Ensure it's clickable above nav panel if it opens */
+}
+
+/* --- Default Navigation Styles (Mobile First Approach) --- */
+header nav {
+  /* Mobile base styles: Hidden initially, styled as overlay when active */
+  display: none; /* Hidden by default on mobile */
+  flex-direction: column; /* Stack links vertically when shown */
+  align-items: center; /* Center links horizontally */
+  gap: 1rem; /* Spacing between vertical links */
+
+  /* Positioning & Appearance for when JS opens it */
+  position: absolute;
+  top: 100%; /* Position below the header */
+  /* Or use fixed height: top: 60px; Adjust based on your header height */
+  left: 0;
+  width: 100%;
+  background-color: #1d4ed8; /* Same as light mode header bg */
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  z-index: 99; /* Below the toggle button */
+}
+html.dark header nav {
+    background-color: #1e3a8a; /* Same as dark mode header bg */
+}
+
+/* Style links when mobile nav is open */
+header nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem; /* Make mobile links slightly larger */
+    padding: 0.5rem 1rem;
+    width: 100%; /* Make tap area wider */
+    text-align: center;
+    border-radius: 4px;
+}
+header nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover */
+    text-decoration: none;
+}
+
+/* --- Class to Show Mobile Nav (Toggled by JavaScript) --- */
+/* Add this class to <nav> via JS to show it */
+header nav.mobile-nav-open {
+  display: flex; /* Show the navigation */
+}
+
+
+/* --- Desktop Navigation Styles --- */
+@media (min-width: 768px) { /* Adjust this breakpoint as needed */
+
+  /* Hide hamburger button on desktop */
+  .mobile-nav-toggle {
+    display: none;
+  }
+
+  /* Show and style nav for desktop */
+  header nav {
+    display: flex; /* Show the nav */
+    flex-direction: row; /* Horizontal layout */
+    position: static; /* Reset mobile positioning */
+    width: auto;      /* Reset mobile width */
+    background-color: transparent; /* Reset mobile background */
+    padding: 0;       /* Reset mobile padding */
+    box-shadow: none; /* Reset mobile shadow */
+    /* Keep gap for horizontal spacing */
+    gap: 1.25rem;
+  }
+
+  /* Reset link styles for desktop */
+  header nav a {
+    font-size: 0.95rem; /* Restore desktop font size */
+    padding: 0.25rem 0; /* Restore desktop padding */
+    width: auto;      /* Reset mobile width */
+    text-align: left;
+    background-color: transparent; /* Ensure no hover background persists */
+  }
+  header nav a:hover {
+    background-color: transparent; /* Ensure no hover background persists */
+    text-decoration: underline; /* Restore underline hover */
+    opacity: 0.8;
+  }
+}
