@@ -3,17 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samuel Wahome - Portfolio</title> <link rel="stylesheet" href="styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wahomedata.com/"> <meta property="og:title" content="Samuel Wahome Michinji - Data Scientist Portfolio">
+  <meta property="og:description" content="Portfolio showcasing data science projects, skills, and experience transitioning from industrial chemistry.">
+  <meta property="og:image" content="https://www.wahomedata.com/profile-picture.jpg"> <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://www.wahomedata.com/"> <meta property="twitter:title" content="Samuel Wahome Michinji - Data Scientist Portfolio">
+  <meta property="twitter:description" content="Portfolio showcasing data science projects, skills, and experience transitioning from industrial chemistry.">
+  <meta property="twitter:image" content="https://www.wahomedata.com/profile-picture.jpg">
+  <title>Samuel Wahome - Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script>
-    // --- Dark Mode Logic ---
+    // --- DARK MODE LOGIC ---
+    // This function runs immediately to set the theme on page load and prevent flashing.
     function applyTheme() {
-      // console.log("Applying theme..."); // Optional: Keep logs for debugging
       try {
-        const theme = localStorage.getItem('theme');
+        const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (theme === 'dark' || (!theme && prefersDark)) {
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
           document.documentElement.classList.add('dark');
         } else {
           document.documentElement.classList.remove('dark');
@@ -23,72 +34,92 @@
       }
     }
 
+    // Function to toggle the dark mode class and save the preference.
     function toggleDarkMode() {
-      // console.log("Toggle button clicked!"); // Optional: Keep logs for debugging
       try {
-        const htmlElement = document.documentElement;
-        if (htmlElement.classList.contains('dark')) {
-          htmlElement.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-        } else {
-          htmlElement.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
-        }
+          const htmlElement = document.documentElement;
+          // Toggle the class on the HTML element
+          htmlElement.classList.toggle('dark');
+
+          // Check the new state and save it to localStorage
+          if (htmlElement.classList.contains('dark')) {
+              localStorage.setItem('theme', 'dark');
+          } else {
+              localStorage.setItem('theme', 'light');
+          }
       } catch (e) {
-        console.error("Error toggling dark mode:", e);
+          console.error("Error toggling dark mode:", e);
       }
     }
-    applyTheme(); // Apply theme immediately
 
-    // --- Event Listener Setup ---
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const toggleButton = document.getElementById('darkModeToggle');
-        if (toggleButton) {
-            toggleButton.addEventListener('click', toggleDarkMode);
-        } else {
-            console.error("Dark mode toggle button not found! Check the button's ID.");
+    applyTheme(); // Run on initial script load.
+
+
+    // --- EVENT LISTENER SETUP ---
+    // This runs once the entire HTML document has been loaded and parsed.
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // --- Mobile Navigation Toggle ---
+      const mobileNavToggle = document.getElementById('mobileNavToggle');
+      const mainNav = document.querySelector('header nav');
+
+      if (mobileNavToggle && mainNav) {
+        mobileNavToggle.addEventListener('click', () => {
+          mainNav.classList.toggle('mobile-nav-open');
+        });
+      }
+
+      // --- Dark Mode Toggle Setup ---
+      const darkModeToggleButton = document.getElementById('darkModeToggle');
+      if (darkModeToggleButton) {
+        darkModeToggleButton.addEventListener('click', toggleDarkMode);
+      }
+
+      // --- Certificate Modal Logic ---
+      const modal = document.getElementById("certModal");
+      if (modal) {
+        const modalImg = document.getElementById("certImage");
+        const closeBtn = modal.querySelector(".close-btn");
+
+        // Handle opening the modal
+        document.querySelectorAll('.view-cert-btn').forEach(button => {
+          button.addEventListener('click', function() {
+            modal.style.display = "block";
+            modalImg.src = this.getAttribute('data-cert');
+          });
+        });
+
+        // Handle closing with the 'x' button
+        if (closeBtn) {
+          closeBtn.addEventListener('click', () => {
+            modal.style.display = "none";
+          });
         }
+
+        // Handle closing by clicking the background overlay
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      }
+
+      // --- Scroll Animation Logic ---
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // Optional: Stop observing after it's visible
+          }
+        });
+      }, {
+        rootMargin: '0px 0px -50px 0px' // Trigger a little before it's fully in view
+      });
+
+      const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
+      sectionsToAnimate.forEach((el) => observer.observe(el));
+
     });
-
-    // --- Event Listener Setup ---
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const toggleButton = document.getElementById('darkModeToggle');
-        if (toggleButton) {
-            toggleButton.addEventListener('click', toggleDarkMode);
-        } else {
-            console.error("Dark mode toggle button not found! Check the button's ID.");
-        }
-
-        // --- ADD THIS NEW CERTIFICATE MODAL LOGIC ---
-        const modal = document.getElementById("certModal");
-        if (modal) {
-            const modalImg = document.getElementById("certImage");
-            const closeBtn = document.querySelector(".close-btn");
-
-            document.querySelectorAll('.view-cert-btn').forEach(button => {
-                button.onclick = function() {
-                    modal.style.display = "block";
-                    modalImg.src = this.getAttribute('data-cert');
-                }
-            });
-
-            // When the user clicks on <span> (x), close the modal
-            closeBtn.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere on the dark overlay, close it
-            modal.onclick = function(event) {
-                // Check if the click is on the dark background, not the image itself
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        }
-        // --- END OF NEW LOGIC ---
-
-    });
-
   </script>
   <style>
     html { scroll-behavior: smooth; }
@@ -117,7 +148,7 @@
     </button>
   </header>
 
-  <section id="hero">
+  <section id="hero" class="fade-in-section">
     <div class="hero-content-wrapper">
       <div class="hero-image-container">
         <img src="profile-picture.jpg" alt="Samuel Wahome Michinji - Profile Picture" class="profile-picture">
@@ -136,7 +167,7 @@
       </div>
     </div>
   </section>
-  <section id="pitch">
+  <section id="pitch" class="fade-in-section">
     <h2>Elevator Pitch</h2>
     <p>Watch a brief video introduction about my background and goals.</p>
     <div class="video-container">
@@ -145,7 +176,7 @@
       </iframe>
       </div>
   </section>
-  <section id="experience">
+  <section id="experience" class="fade-in-section">
     <h2>Work Experience</h2>
     <div class="experience-item">
       <h3>Production Operator</h3>
@@ -170,7 +201,7 @@
       </ul>
     </div>
   </section>
-  <section id="about">
+  <section id="about" class="fade-in-section">
     <div class="content-card">
       <h2>About Me</h2>
       <p>
@@ -187,7 +218,7 @@
       </p>
     </div>
   </section>
-  <section id="skills">
+  <section id="skills" class="fade-in-section">
     <h2>Skills</h2>
     <div class="skills-grid">
       <div class="skill-category">
@@ -213,7 +244,7 @@
       </div>
     </div>
   </section>
-  <section id="projects">
+  <section id="projects" class="fade-in-section">
     <h2>Projects</h2>
     <div class="project-grid">
       <div class="project-card">
@@ -242,7 +273,7 @@
       </div>
       </div>
   </section>
-  <section id="courses">
+  <section id="courses" class="fade-in-section">
     <h2>Courses & Certificates</h2>
     <ul>
       <li>
@@ -286,7 +317,7 @@
       </li>
     </ul>
   </section>
-  <section id="contact">
+  <section id="contact" class="fade-in-section">
     <h2>Get In Touch</h2>
     <p>
         I'm always interested in discussing new opportunities, collaborations, or projects related to data science and industrial applications. Feel free to reach out!
