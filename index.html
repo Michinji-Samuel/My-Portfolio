@@ -49,6 +49,46 @@
             console.error("Dark mode toggle button not found! Check the button's ID.");
         }
     });
+
+    // --- Event Listener Setup ---
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const toggleButton = document.getElementById('darkModeToggle');
+        if (toggleButton) {
+            toggleButton.addEventListener('click', toggleDarkMode);
+        } else {
+            console.error("Dark mode toggle button not found! Check the button's ID.");
+        }
+
+        // --- ADD THIS NEW CERTIFICATE MODAL LOGIC ---
+        const modal = document.getElementById("certModal");
+        if (modal) {
+            const modalImg = document.getElementById("certImage");
+            const closeBtn = document.querySelector(".close-btn");
+
+            document.querySelectorAll('.view-cert-btn').forEach(button => {
+                button.onclick = function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.getAttribute('data-cert');
+                }
+            });
+
+            // When the user clicks on <span> (x), close the modal
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere on the dark overlay, close it
+            modal.onclick = function(event) {
+                // Check if the click is on the dark background, not the image itself
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+        // --- END OF NEW LOGIC ---
+
+    });
+
   </script>
   <style>
     html { scroll-behavior: smooth; }
@@ -79,16 +119,14 @@
 
   <section id="hero">
     <div class="hero-content-wrapper">
-
       <div class="hero-image-container">
         <img src="profile-picture.jpg" alt="Samuel Wahome Michinji - Profile Picture" class="profile-picture">
-        </div>
-
+      </div>
       <div class="hero-text-container">
         <h2>Samuel Wahome Michinji</h2>
-        <p class="tagline">Data Scientist | Industrial Chemist | Process Optimization Enthusiast</p>
+        <p class="tagline">Industrial Chemist | Process Optimization | Data Analytics</p>
         <p class="intro">
-          Bridging the gap between Industrial Chemistry and Data Science, I specialize in extracting insights, optimizing processes, and driving efficiency through data-driven decision-making. With a strong foundation in chemical analysis and a growing expertise in predictive modeling, I am passionate about leveraging data to solve real-world industrial challenges and enhance operational performance.
+          Results-driven Industrial Chemist with 5+ years’ experience in synthetic resin manufacturing. Proven track record in process optimization and quality control, adept at collaborating with cross-functional teams to innovate formulations, troubleshoot production challenges, and deliver products exceeding quality specifications.
         </p>
         <div class="hero-actions">
           <a href="#projects" class="cta-button">View Projects</a>
@@ -96,7 +134,6 @@
           <a href="#contact" class="cta-button">Contact Me</a>
         </div>
       </div>
-
     </div>
   </section>
   <section id="pitch">
@@ -113,26 +150,26 @@
     <div class="experience-item">
       <h3>Production Operator</h3>
       <p class="company-location">Synresins Kenya Ltd – Nairobi, Kenya</p>
-      <p class="dates">February 2020 - Present</p>
+      <p class="dates">February 2020 – Present</p>
       <ul>
-        <li>Operated and monitored resin production processes, ensuring adherence to safety (OSHA) and quality (ISO) standards.</li>
-        <li>Collaborated with cross-functional teams to analyze workflows and implement optimizations, contributing to a 15% reduction in downtime.</li>
-        <li>Conducted quality control tests on raw materials and finished products, ensuring compliance and documenting results.</li>
-        <li>Applied Kaizen methodologies for continuous improvement, resulting in a 10% increase in production efficiency.</li>
-        <li></li>
+        <li>Optimized polymerization parameters to improve emulsion stability and uniformity, reducing defect-related reworks by 20%.</li>
+        <li>Cut batch cycle time by 15% through Kaizen and process streamlining, boosting output without compromising quality.</li>
+        <li>Led troubleshooting initiatives to resolve emulsification challenges (phase separation, foaming, raw material variability).</li>
+        <li>Trained and mentored junior operators, increasing team competency and reducing onboarding time by 30%.</li>
+        <li>Ensured 100% compliance with SOPs, GMP, and ISO 9001 standards, strengthening audit readiness.</li>
       </ul>
     </div>
     <div class="experience-item">
-      <h3>Industrial Chemist (Intern)</h3>
-      <p class="company-location">Ministry of Petroleum and Mining – Geological Surveys Laboratories – Nairobi, Kenya</p>
-      <p class="dates">May 2019 – August 2019</p>
+      <h3>Industrial Chemistry Intern</h3>
+      <p class="company-location">Ministry of Petroleum and Mining – Directorate of Geological Surveys Laboratories | Nairobi, Kenya</p>
+      <p class="dates">July 2019 – October 2019</p>
       <ul>
-        <li>Conducted chemical analysis of mineral samples using AAS, XRF, and UV-Vis Spectrophotometry, supporting national geological surveys.</li>
-        <li>Assisted in the calibration and maintenance of laboratory instruments.</li>
-        <li>Compiled and documented detailed analytical reports for stakeholders.</li>
+        <li>Conducted elemental and compositional analyses on mineral samples using AAS, UV-Vis, and titration, achieving precise assay results.</li>
+        <li>Supported refining trials that enhanced yield recovery by 5% in select test runs.</li>
+        <li>Maintained accurate lab records and prepared chemical reagents in strict adherence to ISO quality protocols.</li>
       </ul>
     </div>
-    </section>
+  </section>
   <section id="about">
     <div class="content-card">
       <h2>About Me</h2>
@@ -154,34 +191,24 @@
     <h2>Skills</h2>
     <div class="skills-grid">
       <div class="skill-category">
-        <h3>Technical & Data Science</h3>
+        <h3>Technical Skills</h3>
         <ul>
-          <li><strong>Data Analytics: </strong>Python (Pandas, NumPy), SQL, Power BI, Excel</li>
-          <li><strong>Data Visualization: </strong>Power BI, Matplotlib, Seaborn, Plotly</li>
-          <li><strong>Machine Learning: </strong>Scikit-learn, TensorFlow (Regression, Classification, Clustering, Model Optimization)</li>
-          <li><strong>Programming: </strong>Python, SQL</li>
-          <li><strong>Databases: </strong>PostgreSQL, MySQL</li>
-          <li><strong>Tools: </strong>Git, GitHub, Kaggle, Jupyter Notebooks, Google Colab</li>
+          <li><strong>Resin Technologies:</strong> Emulsion & alkyd resin synthesis, polymerization chemistry</li>
+          <li><strong>Analytical Methods:</strong> AAS, UV-Vis, pH meter, titration, Karl Fischer, Brookfield viscometer</li>
+          <li><strong>Production Tools:</strong> SCADA, ERP systems, batch documentation</li>
+          <li><strong>Quality Systems:</strong> ISO 9001, GMP, Kaizen, Lean Six Sigma principles</li>
+          <li><strong>Software:</strong> MS Office Suite, Excel (data analysis), Power BI, Python</li>
         </ul>
       </div>
       <div class="skill-category">
-        <h3>Industrial & Process Optimization</h3>
+        <h3>Core Competencies</h3>
         <ul>
-          <li><strong>Industrial Chemistry: </strong>Chemical Process Analysis, Raw Material Testing, Product Formulation</li>
-          <li><strong>Process Optimization: </strong>Lean Manufacturing, Six Sigma, Data-Driven Efficiency Improvements</li>
-          <li><strong>Quality Control: </strong>ISO Standards, Statistical Process Control (SPC), Root Cause Analysis</li>
-          <li><strong>Laboratory Analysis & Instrumentation: </strong>AAS, XRF, UV-Vis Spectroscopy, Titrations</li>
-        </ul>
-      </div>
-      <div class="skill-category">
-        <h3>Professional & Soft Skills</h3>
-        <ul>
-          <li><strong>Analytical Problem Solving: </strong>Identifying inefficiencies and applying data-driven solutions</li>
-          <li><strong>Project Coordination: </strong> Managing tasks, meeting deadlines, and optimizing workflows</li>
-          <li>Team Leadership & Collaboration</li>
-          <li><strong>Mentorship & Training: </strong>Knowledge sharing, coaching junior team members</li>
-          <li><strong>Reporting & Documentation: </strong>Technical report writing, data interpretation</li>
-          <li><strong>Industrial Safety: </strong>OSHA Compliance, Risk Assessment, Safety Protocol Implementation</li>
+          <li>Process Optimization & Quality Assurance</li>
+          <li>Production Troubleshooting & Root Cause Analysis</li>
+          <li>Safety Compliance & Regulatory Adherence</li>
+          <li>Leadership, Training & Mentorship</li>
+          <li>Cross-Functional Collaboration</li>
+          <li>Data-Driven Decision-Making</li>
         </ul>
       </div>
     </div>
@@ -219,25 +246,43 @@
     <h2>Courses & Certificates</h2>
     <ul>
       <li>
-        <strong>Google Data Analytics Professional Certificate</strong> - Google
+        <strong>ALX Data Analytics</strong> - ALX Africa
         <span class="status status-completed">(Completed)</span>
+        <button class="view-cert-btn" data-cert="alx-data-analytics-cert.png">View Certificate</button>
       </li>
       <li>
-        <strong>ALX Data Science Program</strong> - ALX Africa
-        <span class="status status-in-progress">(In Progress - as of March 2025)</span>
+        <strong>ALX Python for Data Science</strong> - ALX Africa
+        <span class="status status-completed">(Completed)</span>
+        <button class="view-cert-btn" data-cert="alx-python-cert.png">View Certificate</button>
+      </li>
+      <li>
+        <strong>ALX Professional Foundations</strong> - ALX Africa
+        <span class="status status-completed">(Completed)</span>
+        <button class="view-cert-btn" data-cert="alx-prof-foundations-cert.png">View Certificate</button>
+      </li>
+      <li>
+        <strong>Google Data Analytics Professional Certificate</strong> - Google
+        <span class="status status-completed">(Completed)</span>
+        <button class="view-cert-btn" data-cert="google-data-analytics-cert.png">View Certificate</button>
       </li>
       <li>
         <strong>Data Structures and Algorithms</strong> - University of Helsinki / mooc.fi
-        (<a href="https://tira.mooc.fi/spring-2025/" target="_blank" rel="noopener noreferrer">Course Link</a>)
-        <span class="status status-in-progress">(In Progress - Spring 2025)</span>
+        (<a href="https://tira.mooc.fi/spring-205/" target="_blank" rel="noopener noreferrer">Course Link</a>)
+        <span class="status status-completed">(Completed)</span>
       </li>
-      <li>
+       <li>
         <strong>OSHA Safety Training Certification</strong>
         <span class="status status-completed">(Completed)</span>
+        <button class="view-cert-btn" data-cert="osha-cert.png">View Certificate</button>
       </li>
       <li>
         <strong>Kaizen Methodology Certification</strong>
         <span class="status status-completed">(Completed)</span>
+        <button class="view-cert-btn" data-cert="kaizen-cert.png">View Certificate</button>
+      </li>
+      <li>
+        <strong>Ongoing Specializations:</strong> Data Science, Data Engineering, & Cyber Security
+        <span class="status status-in-progress">(In Progress)</span>
       </li>
     </ul>
   </section>
@@ -265,6 +310,9 @@
       </a>
     </div>
   </footer>
-
+  <div id="certModal" class="modal">
+    <span class="close-btn">&times;</span>
+    <img class="modal-content" id="certImage">
+  </div>
 </body>
 </html>
